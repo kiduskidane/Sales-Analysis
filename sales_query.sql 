@@ -1,0 +1,134 @@
+#most expensive prodcut 
+select `order id`, product, `price each`
+from `sales-data-451602.sales_data.sales`
+group by `Order ID`, product,`price each`
+order by `Price Each` desc
+limit 1
+
+#price for each product
+select distinct Product, `price each`
+from `sales-data-451602.sales_data.sales` 
+
+#cheapest product
+select `order id`, product, `price each`
+from `sales-data-451602.sales_data.sales`
+group by `Order ID`, product,`price each`
+order by `Price Each` asc
+limit 1
+
+#least orderred product
+select distinct product, sum(`Quantity Ordered`) as orders
+from `sales-data-451602.sales_data.sales`
+group by Product
+order by orders
+limit 1
+
+#most ordered prroduct
+select distinct product, sum(`Quantity Ordered`) as orders
+from `sales-data-451602.sales_data.sales`
+group by Product
+order by orders desc
+limit 1
+
+#total amount of orders for each product
+select distinct product, sum(`Quantity Ordered`) as total_orders
+from `sales-data-451602.sales_data.sales`
+group by Product
+order by total_orders
+
+#total amount of sales for each product
+select product, sum(sales) as total_sale
+from `sales-data-451602.sales_data.sales`
+group by Product
+order by total_sale
+
+#total amount of each product orderded to cities
+select product, city, sum(`Quantity Ordered`) as total_orders
+from `sales-data-451602.sales_data.sales`
+group by product, City
+order by total_orders
+
+#total amount of orders to each city
+select city, sum(`Quantity Ordered`) as total_orders
+from `sales-data-451602.sales_data.sales`
+group by City
+order by total_orders
+
+
+#total amount of sales to each city
+select city, sum(Sales) as total_sales
+from `sales-data-451602.sales_data.sales`
+group by City
+order by total_sales
+
+#Which city has the most amount of orders
+select city, sum(`Quantity Ordered`) as total_orders
+from `sales-data-451602.sales_data.sales`
+group by City
+order by total_orders desc
+limit 1
+
+#which city has the least amount of orders
+select city, sum(`Quantity Ordered`) as total_orders
+from `sales-data-451602.sales_data.sales`
+group by City
+order by total_orders asc
+limit 1
+
+#What city has the highest sales
+select city, sum(Sales) as total_sales
+from `sales-data-451602.sales_data.sales`
+group by City
+order by total_sales desc
+limit 1
+
+#what city has the lowest sales
+select city, sum(Sales) as total_sales
+from `sales-data-451602.sales_data.sales`
+group by City
+order by total_sales asc
+limit 1
+
+
+#What city ordered most for each product
+#total sale of each product sold
+
+#what month has the most sales -- december
+select month, sum(Sales) as total_sales
+from `sales-data-451602.sales_data.sales`
+group by month
+order by total_sales desc
+limit 1
+
+#what month has the lowest sales -- january 
+select month, sum(Sales) as total_sales
+from `sales-data-451602.sales_data.sales`
+group by month
+order by total_sales asc
+limit 1
+
+# list of months with total sales order for that month 
+select month, sum(Sales) as total_sales
+from `sales-data-451602.sales_data.sales`
+group by month
+order by month,total_sales desc
+
+#what month has the lowest orders -- january
+select month, sum(`Quantity Ordered`) as total_orders
+from `sales-data-451602.sales_data.sales`
+group by month
+order by total_orders asc
+limit 1
+
+#what month has the highest orders-- descember
+select month, sum(`Quantity Ordered`) as total_orders
+from `sales-data-451602.sales_data.sales`
+group by month
+order by total_orders desc
+limit 1
+
+# list of month with total order for that month 
+select month, sum(`Quantity Ordered`) as total_orders
+from `sales-data-451602.sales_data.sales`
+group by month
+order by month
